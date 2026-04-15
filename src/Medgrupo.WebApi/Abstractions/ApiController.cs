@@ -1,0 +1,33 @@
+using Medgrupo.Business.Notifications.Abstractions;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Medgrupo.WebApi.Abstractions;
+
+[ApiController]
+[Route("api/[controller]")]
+[Produces("application/json")]
+public abstract class ApiController(INotificationContext notifications) : ControllerBase
+{
+    protected INotificationContext Notifications { get; } = notifications;
+
+    protected IActionResult Respond(object? payload = null, int successStatus = StatusCodes.Status200OK)
+    {
+        if (!Notifications.HasNotifications)
+        {
+            return payload is null ? StatusCode(successStatus) : StatusCode(successStatus, payload);
+        }
+
+        var problem = new
+        {
+            status = (int)Notifications.Type,
+            errors = Notifications.Notifications.Select(n => new { n.Key, n.Message })
+        };
+
+        return Notifications.Type switch
+        {
+            NotificationType.NotFound => NotFound(problem),
+            NotificationType.Conflict => Conflict(problem),
+            _ => BadRequest(problem)
+        };
+    }
+}
