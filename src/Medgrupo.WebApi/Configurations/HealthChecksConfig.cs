@@ -11,10 +11,12 @@ public static class HealthChecksConfig
         services.AddHealthChecks()
             .AddSqlServer(connectionString, name: "sqlserver", tags: new[] { "db", "sql" });
 
+        var uiEndpoint = configuration["HealthChecks:UiEndpoint"] ?? "http://localhost:8080/health";
+
         services.AddHealthChecksUI(opt =>
         {
             opt.SetEvaluationTimeInSeconds(30);
-            opt.AddHealthCheckEndpoint("Medgrupo API", "/health");
+            opt.AddHealthCheckEndpoint("Medgrupo API", uiEndpoint);
         }).AddInMemoryStorage();
 
         return services;
