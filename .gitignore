@@ -1,0 +1,81 @@
+## .NET
+bin/
+obj/
+out/
+publish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Rider / VS / VS Code
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+## Test results
+TestResults/
+[Tt]est[Rr]esult*/
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+## EF Core
+*.mdf
+*.ldf
+*.ndf
+
+## Docker
+**/docker-compose.override.yml
+
+## OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+## Logs
+*.log
+logs/
+
+## User secrets
+secrets.json
+*.pfx
+*.pem
+
+## Misc
+*.bak
+*.tmp
